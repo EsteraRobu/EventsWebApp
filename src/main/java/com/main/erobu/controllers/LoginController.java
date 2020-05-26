@@ -20,12 +20,12 @@ import java.util.Collection;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping()
 public class LoginController {
     @Autowired
     private AdministratorRepository administratorRepository;
 
-    @GetMapping(value = {"/", "/login"})
+    @GetMapping(value = {"","/login"})
     public ModelAndView login() {
 //        EditorDTO editor = new EditorDTO();
 //        editor.setActive(1);

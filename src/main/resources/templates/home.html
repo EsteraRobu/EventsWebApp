@@ -22,26 +22,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<style>
-    body, h1, h2, h3, h4, h5 {
-        font-family: "Poppins", sans-serif
-    }
 
-    body {
-        font-size: 16px;
-    }
-
-    .w3-half img {
-        margin-bottom: -6px;
-        margin-top: 16px;
-        opacity: 0.8;
-        cursor: pointer
-    }
-
-    .w3-half img:hover {
-        opacity: 1
-    }
-</style>
 <body>
 
 <!-- Sidebar/menu -->
@@ -57,7 +38,7 @@
         <a href="#cultura" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Joy and Culture</a>
         <a href="#aboutus" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About us</a>
         <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Our Team</a>
-        <a href="#login" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
+        <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
         <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
     </div>
 </nav>
@@ -167,32 +148,7 @@
     <div class="w3-row-padding">
 
     </div>
-    <div class="w3-container" id="login" style="margin-top:75px">
-        <h1 class="w3-xxxlarge w3-text-red"><b>Login.</b></h1>
-        <hr style="width:50px;border:5px solid red" class="w3-round">
-        <div class="container myBG">
-            <p th:if="${loginError}" class="error">Wrong user or password</p>
 
-            <form class="form-signin" th:action="@{/login}" method="post">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <label for="username" class="sr-only">Username</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required
-                       autofocus>
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password"
-                       required>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                <p><a href="/register/client">Don't have an account? Register</a></p>
-            </form>
-
-
-        </div>
-    </div>
     <!-- Contact -->
     <div class="w3-container" id="contact" style="margin-top:75px">
         <h1 class="w3-xxxlarge w3-text-red"><b>Contact.</b></h1>
