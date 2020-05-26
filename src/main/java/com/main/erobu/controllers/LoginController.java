@@ -1,10 +1,7 @@
 package com.main.erobu.controllers;
 
-import com.main.erobu.data.entry.Administrator;
 import com.main.erobu.data.repository.AdministratorRepository;
-import com.main.erobu.dto.AdministratorDTO;
 import com.main.erobu.security.WebSecurityConfig;
-import com.main.erobu.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -40,15 +37,15 @@ public class LoginController {
 //        editorRepository.save(publisher);
         PasswordEncoder encoder =
                 PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        AdministratorDTO editor = new AdministratorDTO();
-        editor.setActive(1);
-        editor.setId(1231);
-        editor.setUsername("terra");
-        editor.setFirstName("terra");
-        editor.setPassword(encoder.encode("terra"));
-        editor.setRoleId(1);
-        Administrator publisher = EntityUtils.administratorDTOToAdministrator(editor);
-        administratorRepository.save(publisher);
+//        AdministratorDTO editor = new AdministratorDTO();
+//        editor.setActive(1);
+//        editor.setId(1231);
+//        editor.setUsername("terra");
+//        editor.setFirstName("terra");
+//        editor.setPassword(encoder.encode("terra"));
+//        editor.setRoleId(1);
+//        Administrator publisher = EntityUtils.administratorDTOToAdministrator(editor);
+//        administratorRepository.save(publisher);
         ModelAndView modelAndView = new ModelAndView("login");
         return modelAndView;
     }
