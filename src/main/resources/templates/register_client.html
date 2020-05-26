@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../static/img/favicon.ico" th:href="@{/img/favicon.ico}">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+<!--    <link href="../../static/css/signin.css" th:href="@{/css/signin.css}" rel="stylesheet">-->
+</head>
+
+<body>
+
+<div class="container">
+
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<title>Events</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {font-size:16px;}
+    .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+    .w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+    <div class="w3-container">
+        <h3 class="w3-padding-64"><b>Events.<br>Diversity</b></h3>
+    </div>
+    <div class="w3-bar-block">
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+        <a href="#welcome" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Welcome</a>
+        <a href="/register/publisher" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"> Register as a publisher!</a>
+        <a href="/register/client" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Register as a client!</a>
+
+        <a href="/login#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
+        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+    </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+    <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+    <span>Events</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header -->
+    <div class="w3-container" style="margin-top:80px" id="welcome">
+        <h1 class="w3-xxxlarge w3-text-red"><b>Welcome</b></h1>
+        <p >Here you can find all the news in terms of events organized in Romania and its surroundings. Whether you are interested in concerts, festivals, exhibitions, book launches, parties or other events, or you want to know what is happening in your city, our portal is the safest and fastest source of information. Thus, we help you discover the beauty of the city from another perspective and we offer you the inspiration you need to spend your free time both on weekends and during the week.
+        </p>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+    </div>
+
+
+    <!-- Services -->
+    <div class="w3-container" id="register" style="margin-top:75px">
+        <h1 class="w3-xxxlarge w3-text-red"><b>Register on our platform</b></h1>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+
+        <form id="sectionForm" class="form-signin" th:action="@{/register/client}" th:object="${clientDTO}" method="post">
+            <h2 class="form-signin-heading">Please register</h2>
+            <label for="firstName" class="sr-only">First name</label>
+            <input type="text" id="firstName" class="form-control" th:field="*{firstName}" placeholder="First name" required autofocus>
+
+            <label for="lastName" class="sr-only">Last name</label>
+            <input type="text" id="lastName" class="form-control" th:field="*{lastName}" placeholder="Last name" required autofocus>
+
+            <label for="dob" class="sr-only">Date of birth</label>
+            <input type="date" id="dob" class="form-control" th:field="*{birthDate}" placeholder="Date of birth" required>
+
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="Email" required>
+
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" class="form-control" th:field="*{username}" placeholder="Username" required>
+
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" class="form-control" th:field="*{password}" placeholder="Password" required>
+
+            <label for="address" class="sr-only">Address</label>
+            <input type="text" id="address" class="form-control" th:field="*{address}" placeholder="Address" >
+
+            <label for="phone" class="sr-only">Phone</label>
+            <input type="text" id="phone" class="form-control" th:field="*{phone}" placeholder="Phone" required>
+          <h6>Select favorite categories (At least one!)</h6>
+            <ul>
+                <li th:each="checkboxValue: ${multiCheckboxAllValues}">
+                    <input type="checkbox"
+                           th:field="*{multiCheckboxSelectedValues}"
+                           th:value="${checkboxValue}" />
+                    <label
+                            th:for="${#ids.prev('multiCheckboxSelectedValues')}"
+                            th:text="${checkboxValue}"></label>
+                </li>
+            </ul>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+        <p><a href="/register/publisher" >Are you a publisher? Register</a></p>
+    </div>
+
+    <!-- Designers -->
+       <div class="w3-row-padding">
+
+    </div>
+
+    <!-- Contact -->
+    <div class="w3-container" id="contact" style="margin-top:75px">
+        <h1 class="w3-xxxlarge w3-text-red"><b>Contact.</b></h1>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+        <p>We are here to help you!</p>
+        <p>If you need support for publishing the events, contact the support team at: suport@evenimente.com</p>
+
+    </div>
+
+    <!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by Events Online</p></div>
+
+<script src="../../js/templateforpg.js"></script>
+
+</body>
+</html>
+</body>
+</html>
+<script>(function() {
+    const form = document.querySelector('#sectionForm');
+    const checkboxes = form.querySelectorAll('input[type=checkbox]');
+    const checkboxLength = checkboxes.length;
+    const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
+
+    function init() {
+        if (firstCheckbox) {
+            for (let i = 0; i < checkboxLength; i++) {
+                checkboxes[i].addEventListener('change', checkValidity);
+            }
+
+            checkValidity();
+        }
+    }
+
+    function isChecked() {
+        for (let i = 0; i < checkboxLength; i++) {
+            if (checkboxes[i].checked) return true;
+        }
+
+        return false;
+    }
+
+    function checkValidity() {
+        const errorMessage = !isChecked() ? 'At least one checkbox must be selected.' : '';
+        firstCheckbox.setCustomValidity(errorMessage);
+    }
+
+    init();
+})();</script>

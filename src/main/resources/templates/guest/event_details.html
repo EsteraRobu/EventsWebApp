@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+
+
+
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+
+
+<html lang="en">
+<title>Events</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<!-- Bootstrap core CSS -->
+<link href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="../../static/css/carousel.css" th:href="@{/css/carousel.css}" rel="stylesheet">
+<link href="../../static/css/commingsoon.css" th:href="@{/css/commingsoon.css}" rel="stylesheet">
+
+
+<link href="../../static/css/product-details.css" th:href="@{/css/product-details.css}" rel="stylesheet">
+
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Events</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+    </div>
+</nav>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;"
+     id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+       style="width:100%;font-size:22px">Close Menu</a>
+    <div class="w3-container">
+        <h3 class="w3-padding-64"><b>Events.<br>Diversity</b></h3>
+    </div>
+    <div class="w3-bar-block">
+        <a href="/index" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+        <a href="#profile" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Profile</a>
+        <a href="/client/order" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Orders</a>
+        <a href="/client/cart" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Cart</a>
+
+        <!--        <a href="/publisher/event" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">EventsLost</a>-->
+
+        <a href="/logout" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+    </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+    <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+    <span>Events</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+     id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+
+
+    <script src="../../js/commingsoon.js"></script>
+
+
+    <!-- Modal for full size images on click-->
+    <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+        <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+            <img id="img01" class="w3-image">
+            <p id="caption"></p>
+        </div>
+    </div>
+
+
+    <!-- Designers -->
+
+    <div class="album text-muted">
+        <div class="container">
+            <div class="details-container" th:object="${eventDTO}">
+
+                <div class="caption">
+
+                    <h6 class="title-price">
+                        <small>STARTING PRICE</small>
+                    </h6>
+                    <h5 class="pull-right" th:text="'$' + ${eventDTO.startingPrice}" >starting price</h5>
+
+                    <h4><a th:href=@{'/event/'+${eventDTO.id}} th:text="${eventDTO.name}">name</a></h4>
+                    <p th:text="${eventDTO.description}">description</p>
+
+                    <h7>Hosted by: <p th:href=@{'/profile/publisher/'+${eventDTO.editorDTO.id}} th:text="${eventDTO.editorDTO.name}"/> <p  th:text="${eventDTO.editorDTO.email} " /></h7>
+
+                    <hr>
+                    <h5>Pricing</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Available tickets</th>
+                                <th>Price (USD)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="ticketDTO : ${ ticketDTOList }">
+                                <td th:text="${ ticketDTO.ticketCategoryDTO.category }">Category</td>
+                                <td th:text="${ ticketDTO.quantity }">Available tickets</td>
+                                <td th:text="${ ticketDTO.price }">Price (USD)</td>
+                                <td>
+                                    <form th:action="@{'/ticket/buy/'+${ticketDTO.id}}"
+                                          th:object="${cartItem}" method="post">
+                                        <div class="input-group-sm">
+                                            <input type="number" class="form-control" placeholder="Quantity"
+                                                   th:field="*{quantity}" min="0" max="${ ticketDTO.quantity }"
+                                                   aria-describedby="basic-addon1" required>
+                                            <input th:type="TicketDTO" th:id="ticketDTO" th:field="*{ticketDTO}"
+                                                   th:value="${ticketDTO}" hidden>
+                                            <button class="btn btn-sm btn-success btn-block"
+                                                    type="submit">Add to cart
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="w3-row-padding">
+
+    </div>
+
+    <!-- Contact -->
+    <div class="w3-container" id="contact" style="margin-top:75px">
+        <h1 class="w3-xxxlarge w3-text-red"><b>Contact.</b></h1>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+
+        <p>We are here to help you!</p>
+        <p>If you need support for publishing the events, contact the support team at: suport@evenimente.com</p>
+
+
+    </div>
+    <!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">
+    Powered by Events Online</p></div>
+
+<script src="../../js/templateforpg.js"></script>
+
+
+</html>
+
+
+
+<!-- /END THE FEATURETTES -->
+
+
+<!-- FOOTER -->
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../js/holder.min.js" th:href="@{/js/holder.min.js}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="@{../../js/ie10-viewport-bug-workaround.js}"></script>
+</body>
+</html>
