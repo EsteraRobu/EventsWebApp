@@ -38,6 +38,8 @@ public class LoginController {
 //        editor.setPassword("1234");
 //        Editor publisher = EntityUtils.editorDTOToEditor(editor);
 //        editorRepository.save(publisher);
+
+
         PasswordEncoder encoder =
                 PasswordEncoderFactories.createDelegatingPasswordEncoder();
         AdministratorDTO editor = new AdministratorDTO();
