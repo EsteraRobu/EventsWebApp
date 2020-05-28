@@ -173,10 +173,8 @@
                             <th>#</th>
                             <th>Order date</th>
                             <th>Order status</th>
-                            <th>Order payment method</th>
-                            <th>Order delivery method</th>
                             <th>Total price</th>
-                            <th>Actions</th>
+                            <th>View</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -186,7 +184,7 @@
                             <td th:text="${ order.orderStatusDTO.status }">Order status</td>
                             <!--                        <td th:text="${ order.orderDetailsDTO.paymentMethod }">Order payment method</td>-->
                             <!--                        <td th:text="${ order.orderDetailsDTO.deliveryMethod }">Order delivery method</td>-->
-                            <!--                        <td th:text="${ order.getTotalPrice() }">Total price</td>-->
+                                                    <td th:text="${ order.getTotalPrice() }">Total price</td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <form th:action="@{'/client/order/'+${order.id}}" method="get">

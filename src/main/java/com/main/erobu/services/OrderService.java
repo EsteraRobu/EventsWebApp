@@ -5,6 +5,7 @@ import com.main.erobu.data.entry.Order;
 import com.main.erobu.data.entry.OrderItem;
 import com.main.erobu.data.repository.OrderItemRepository;
 import com.main.erobu.data.repository.OrderRepository;
+import com.main.erobu.data.repository.OrderStatusRepository;
 import com.main.erobu.dto.*;
 import com.main.erobu.exceptions.ObjectTransferException;
 import com.main.erobu.util.Constants;
@@ -26,7 +27,8 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
-
+    @Autowired
+    private OrderStatusRepository orderStatusRepository;
     @Autowired
     private OrderStatusService orderStatusService;
 
@@ -41,6 +43,7 @@ public class OrderService {
 
     @Transactional
     public OrderDTO placeOrder(ShoppingCartDTO shoppingCartDTO) throws TransactionException, ObjectTransferException {
+
         OrderDetailsDTO orderDetailsDTO = new OrderDetailsDTO.Builder()
                 .id(0)
                 .date(new Date(System.currentTimeMillis()))
