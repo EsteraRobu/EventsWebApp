@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -77,7 +78,11 @@ public class PublisherController {
             if (grantedAuthority.getAuthority().equals(WebSecurityConfig.EDITOR_ROLE)) {
                 try {
                     EditorDTO publisherDTO = publisherService.findByUsername(principal.getName());
+                    List<String> dropdownSelectedValue = new ArrayList<>();
+
                     List<EventCategoryDTO> eventCategoryDTOList = eventCategoryService.findAll();
+                    eventCategoryDTOList.forEach(k -> {dropdownSelectedValue.add(k.getCategory());
+                            });
                     EventDTO eventDTO = new EventDTO.Builder()
                             .editorDTO(publisherDTO)
                             .startingPrice(0d)
@@ -85,7 +90,7 @@ public class PublisherController {
 
                     modelAndView.setViewName("publisher/event_add");
                     modelAndView.addObject("eventDTO", eventDTO);
-                    modelAndView.addObject("eventCategoryDTOList", eventCategoryDTOList);
+                    modelAndView.addObject("dropdownSelectedValue", dropdownSelectedValue);
                     return modelAndView;
                 } catch (ObjectTransferException e) {
                     e.printStackTrace();
@@ -191,6 +196,11 @@ public class PublisherController {
         for (GrantedAuthority grantedAuthority : grantedAuthorities) {
             if (grantedAuthority.getAuthority().equals(WebSecurityConfig.EDITOR_ROLE)) {
                 try {
+                    List<String> dropdownSelectedValue = new ArrayList<>();
+
+                    List<TicketCategoryDTO> eventCategoryDTOList = ticketCategoryService.getAllCategories();
+                    eventCategoryDTOList.forEach(k -> {dropdownSelectedValue.add(k.getCategory());
+                    });
                     EditorDTO publisherDTO = publisherService.findByUsername(principal.getName());
                     EventDTO eventDTO = eventService.findById(eventId);
                     if (!eventDTO.getEditorDTO().getId().equals(publisherDTO.getId())) {
@@ -202,6 +212,9 @@ public class PublisherController {
                             .ticketCategoryDTO(ticketCategoryDTO)
                             .eventDTO(eventDTO)
                             .create();
+
+                    modelAndView.addObject("dropdownSelectedValue", dropdownSelectedValue);
+
                     modelAndView.setViewName("publisher/ticket_add");
                     modelAndView.addObject("ticketDTO", ticketDTO);
                     modelAndView.addObject("eventDTO", eventDTO);
@@ -227,8 +240,8 @@ public class PublisherController {
                     EventDTO eventDTO = eventService.findById(eventId);
                     ticketDTO.setId(0);
                     ticketDTO.setEventDTO(eventDTO);
-                    TicketCategoryDTO ticketCategoryDTO = ticketCategoryService.findByCategoryName(ticketDTO.getTicketCategoryDTO().getCategory());
-                    ticketDTO.getTicketCategoryDTO().setId(0);
+                    TicketCategoryDTO ticketCategoryDTO = ticketCategoryService.findByCategoryName(ticketDTO.getDropdownSelectedValue());
+                   // ticketDTO.getTicketCategoryDTO().setId(0);
                     if (ticketCategoryDTO != null) {
                         ticketDTO.setTicketCategoryDTO(ticketCategoryDTO);
                     }
@@ -285,7 +298,7 @@ public class PublisherController {
                 //TODO create image
                 try {
                     EditorDTO publisherDTO = publisherService.findByUsername(principal.getName());
-                    EventCategoryDTO eventCategoryDTO = eventCategoryService.findByCategoryName("Sport");
+                    EventCategoryDTO eventCategoryDTO = eventCategoryService.findByCategoryName(eventDTO.getDropdownSelectedValue());
                     eventDTO.setId(0);
                     eventDTO.setEditorDTO(publisherDTO);
                     eventDTO.setStartingPrice(0d);
