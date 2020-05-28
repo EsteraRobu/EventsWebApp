@@ -7,6 +7,7 @@ import com.main.erobu.paypal.service.PayPalService;
 import com.main.erobu.services.ClientService;
 import com.main.erobu.services.OrderService;
 import com.main.erobu.services.ShoppingCartService;
+import com.main.erobu.services.SmtpMailSender;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import org.hibernate.TransactionException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.mail.MessagingException;
 import java.security.Principal;
 
 @Controller
@@ -27,7 +29,8 @@ public class PaymentController {
 	public static final String PAYPAL_CANCEL_URL = "pay/cancel";
 
 	private Logger log = LoggerFactory.getLogger(getClass());
-
+	@Autowired
+	private SmtpMailSender smtpMailSender;
 	@Autowired
 	private PayPalService paypalService;
 	@Autowired
@@ -37,6 +40,8 @@ public class PaymentController {
 
 	@Autowired
 	private OrderService orderService;
+
+	private final String SUBJECT="Events.Diversity:Your Oreder has been placed succesfully";
 
 	@RequestMapping(method = RequestMethod.GET, value = PAYPAL_CANCEL_URL)
 	public String cancelPay() {
@@ -51,6 +56,7 @@ public class PaymentController {
 			ShoppingCartDTO shoppingCartDTO = shoppingCartService.findByClient(clientDTO);
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if (payment.getState().equals("approved")) {
+				smtpMailSender.send(clientDTO.getEmail(), SUBJECT, "Your order has been placed successfuly, now you can se it on your orders on our site! Enjoy the moment!",clientDTO.getFirstName());
 				orderService.placeOrder(shoppingCartDTO);
 				return "redirect:/client/order";
 			}
@@ -60,8 +66,10 @@ public class PaymentController {
 	catch (ObjectTransferException | TransactionException e) {
 		e.printStackTrace();
 		return "redirect:/error";
-	}
-		
+	} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+
 		return "redirect:/client/order";
 	}
 }
