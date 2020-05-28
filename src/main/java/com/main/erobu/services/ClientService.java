@@ -64,27 +64,7 @@ public class ClientService {
         return EntityUtils.clientToClientDTO(client);
     }
 
-   // public Client save(ClientDTO clientDTO) {
-//        Client client = EntityUtils.clientDTOToClient(clientDTO);
-//
-//        Set<EventCategory> eventCategoriesSet = client.getEventCategories();
-//        Set<EventCategory> savedEventCategoriesSet = new HashSet<>();
-//        client.setEventCategories(new HashSet<>());
-//
-//        Integer clientId = client.getId();
-//        for (EventCategory eventCategory : eventCategoriesSet) {
-//            Set<Client> idsList = new HashSet<>();
-//
-//            idsList.addAll(eventCategory.getIdsClient());
-//            idsList.add(clientRepository.getOne(clientId));
-//            eventCategory.setIdsClient(idsList);
-//            savedEventCategoriesSet.add(eventCategoryRepository.save(eventCategory));
-//        }
-//        client = clientRepository.findById(clientId).orElse(null);
-//        client.setEventCategories(savedEventCategoriesSet);
-//        return clientRepository.save(client);
 
- //   }
 
     public void delete(ClientDTO clientDTO) {
         Client client = EntityUtils.clientDTOToClient(clientDTO);

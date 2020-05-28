@@ -15,6 +15,8 @@ public class EventDTO {
     private Double startingPrice;
     private EventCategoryDTO eventCategoryDTO;
 
+    private String dropdownSelectedValue;
+
 
 
     private Integer visualizationNo;
@@ -33,6 +35,14 @@ public class EventDTO {
         this.startingPrice = startingPrice;
         this.eventCategoryDTO = eventCategoryDTO;
         this.visualizationNo=visualizationNo;
+    }
+
+    public String getDropdownSelectedValue() {
+        return dropdownSelectedValue;
+    }
+
+    public void setDropdownSelectedValue(String dropdownSelectedValue) {
+        this.dropdownSelectedValue = dropdownSelectedValue;
     }
 
     public Integer getVisualizationNo() {

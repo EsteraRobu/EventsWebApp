@@ -100,12 +100,13 @@
                                autofocus>
 
 
-                        <label for="eventCategory" class="sr-only">Event Category</label>
-                        <select class="custom-select" id="eventCategory" th:field="*{eventCategoryDTO}">
-                            <option th:each="eventCategoryDTO : ${eventCategoryDTOList}" th:value="${eventCategoryDTO}"
-                                    th:text="${eventCategoryDTO.category}">Event Category
-                            </option>
+                        <select th:field="*{dropdownSelectedValue}" required>
+                            <option
+                                    th:each="dropdownValue: ${dropdownSelectedValue}"
+                                    th:value="${dropdownValue}"
+                                    th:text="${dropdownValue}" ></option>
                         </select>
+
 
 
                         <label for="dateStart" class="sr-only">Start date</label>

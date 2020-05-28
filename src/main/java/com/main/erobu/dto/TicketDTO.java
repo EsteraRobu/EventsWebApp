@@ -9,9 +9,18 @@ public class TicketDTO {
     private TicketCategoryDTO ticketCategoryDTO;
     private Integer quantity;
     private Double price;
-
+    private String dropdownSelectedValue;
 
     public TicketDTO() {
+    }
+
+
+    public String getDropdownSelectedValue() {
+        return dropdownSelectedValue;
+    }
+
+    public void setDropdownSelectedValue(String dropdownSelectedValue) {
+        this.dropdownSelectedValue = dropdownSelectedValue;
     }
 
     public TicketDTO(Integer id, EventDTO eventDTO, TicketCategoryDTO ticketCategoryDTO, Integer quantity, Double price) {

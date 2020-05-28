@@ -95,9 +95,14 @@
             <form  th:action="@{'/publisher/ticket/add/'+${eventDTO.id}}" th:object="${ticketDTO}" method="post">
 
                 <div class="form-group">
-                    <label for="ticketCategory" >Ticket category</label>
-                    <input type="text" id="ticketCategory" class="form-control" th:field="*{ticketCategoryDTO.category}"
-                           placeholder="Ticket category" autofocus required>
+
+                    <select th:field="*{dropdownSelectedValue}" required>
+                        <option
+                                th:each="dropdownValue: ${dropdownSelectedValue}"
+                                th:value="${dropdownValue}"
+                                th:text="${dropdownValue}" ></option>
+                    </select>
+
                 </div>
                 <div class="form-group">
                     <label for="quantity" >Quantity</label>
