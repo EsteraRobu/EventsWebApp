@@ -151,6 +151,25 @@ public class EventService {
         return stringEventDTOMap;
     }
 
+    public HashMap<String, Integer> getEventsCategrySortedByVisualizations() {
+        List<Event> favevents = new ArrayList<>();
+        HashMap<String, Integer> eventsCategrySorted = new HashMap<>();
+        if (Objects.nonNull(eventCategoryRepository.findAll())) {
+            List<EventCategory> eventCategories = eventCategoryRepository.findAll();
+            for (EventCategory eventCategory : eventCategories) {
+                if (Objects.nonNull(eventRepository.findByEventCategory(eventCategory))) {
+                    favevents = eventRepository.findByEventCategory(eventCategory);
+                    Integer sumVisualizations = 0;
+                    for (Event event1 : favevents) {
+                        sumVisualizations += event1.getVisualizationNo();
+                    }
+                    eventsCategrySorted.put(eventCategory.getCategory(), sumVisualizations);
+                }
+            }
+        }
+        return eventsCategrySorted;
+    }
+
     public HashMap<String, List<EventDTO>> getRecomnadedEvents(HashMap<String, List<EventDTO>> eveStringListMap) {
         HashMap<String, List<EventDTO>> stringListHashMap = new HashMap<>();
         eveStringListMap.forEach((k, v) -> {
