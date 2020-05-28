@@ -45,7 +45,7 @@ public class RegisterController {
     @PostMapping("/client")
     public String registerClientPost(@ModelAttribute(value = "clientDTO") ClientDTO clientDTO) throws MessagingException {
         clientService.registerClient(clientDTO);
-        smtpMailSender.send(clientDTO.getEmail(), SUBJECT, "Hello, "+clientDTO.getFirstName()+" your account has been created. Now you can login  on our site! Enjoy!");
+        smtpMailSender.send(clientDTO.getEmail(), SUBJECT, "Your account has been created. Now you can login  on our site! Enjoy!",clientDTO.getFirstName());
         return "redirect:/login";
     }
 
@@ -60,7 +60,7 @@ public class RegisterController {
     @PostMapping("/publisher")
     public String registerPublisherPost(@ModelAttribute("publisherDTO") EditorDTO publisherDTO) throws MessagingException {
         publisherService.registerEditor(publisherDTO);
-        smtpMailSender.send(publisherDTO.getEmail(), SUBJECT, "Hello, "+publisherDTO.getName()+" your account has been created.You will get an email once it will be activated by our administrator.");
+        smtpMailSender.send(publisherDTO.getEmail(), SUBJECT, " Your account has been created.You will get an email once it will be activated by our administrator.",publisherDTO.getName());
 
         return "redirect:/login";
     }

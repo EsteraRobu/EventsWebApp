@@ -46,7 +46,7 @@ public class AdminController {
         try {
             publisherDTO = editorService.findById(publisherId);
             publisherDTO.setActive(1);
-            smtpMailSender.send(publisherDTO.getEmail(), SUBJECT, "Hello, "+publisherDTO.getName()+" your account has been activated by our administrator. Now you can publish events on our site! Enjoy!");
+            smtpMailSender.send(publisherDTO.getEmail(), SUBJECT, "Your account has been activated by our administrator. Now you can publish events on our site! Enjoy!", publisherDTO.getName());
             editorService.save(publisherDTO);
         } catch (ObjectTransferException e) {
             e.printStackTrace();
