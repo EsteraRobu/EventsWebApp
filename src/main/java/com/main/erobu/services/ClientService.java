@@ -55,6 +55,19 @@ public class ClientService {
         clientDTO = EntityUtils.clientToClientDTO(client);
         shoppingCartService.create(clientDTO);
     }
+    public void save(ClientDTO clientDTO){
+        PasswordEncoder encoder =
+                PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        Client client = clientRepository.findByUsername(clientDTO.getUsername());
+        client.setFirstName(clientDTO.getFirstName());
+        client.setLastName(clientDTO.getLastName());
+        client.setBirthDate(clientDTO.getBirthDate());
+        client.setEmail(clientDTO.getEmail());
+        client.setPassword(encoder.encode(clientDTO.getPassword()));
+        client.setAddress(clientDTO.getAddress());
+        client.setPhone(clientDTO.getPhone());
+        clientRepository.save(client);
+    }
 
     public ClientDTO findByUsername(String username) throws ObjectTransferException {
         Client client = clientRepository.findByUsername(username);

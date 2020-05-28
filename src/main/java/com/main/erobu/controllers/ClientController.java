@@ -164,15 +164,8 @@ public class ClientController {
         for (GrantedAuthority grantedAuthority : grantedAuthorities) {
             if (grantedAuthority.getAuthority().equals(WebSecurityConfig.CLIENT_ROLE)) {
                 Set<EventCategoryDTO> eventCategory = new HashSet<>();
-//				try {
-////					eventCategory.add(eventCategoryService.findByCategoryName("Sport"));
-////					eventCategory.add(eventCategoryService.findByCategoryName("Muzica" ));
-//				}catch (ObjectTransferException e) {
-//					e.printStackTrace();
-//				}
+                clientService.save(clientDTO);
 
-//				clientDTO.setCategories(eventCategory);
-//			clientService.save(clientDTO);
                 return "redirect:/client/edit";
             }
         }
