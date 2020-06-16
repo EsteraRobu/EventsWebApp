@@ -95,7 +95,7 @@ public class PdfBuilder {
         }
 
         document.add(table);
-        document.add(new Paragraph("Events Online, our contact email adress:suport@evenimente.com"));
+        document.add(new Paragraph("Events Online, our contact email adress:events.diversity.helpdesk@gmail.com"));
         document.close();
 
         return new File(filePath);
