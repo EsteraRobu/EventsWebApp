@@ -59,7 +59,6 @@
 <script src="/../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="@{/../static/js/ie10-viewport-bug-workaround.js}"></script>
-<script src="@{/../static/js/categories.js}"></script>
 
 <html lang="en">
 <meta charset="UTF-8">
@@ -166,8 +165,8 @@
                                         <th>Event name</th>
                                         <th>Category</th>
                                         <th>Start date</th>
-                                        <th>End date</th>
                                         <th>Location</th>
+                                        <th>End date</th>
                                         <th>Description</th>
                                         <th>Price</th>
 
@@ -211,11 +210,11 @@
                         <main class="col-sm-9  col-md-10  pt-3">
                             <h3>Event list</h3>
                             <div class="table-responsive">
-                                <input type="text" id="myInput" onkeyup="myFunction()"
+                                <input type="text" id="recomandedin" onkeyup="myFunctionRecomanded()"
                                        placeholder="Search for locations.."
                                        title="Type in a name">
 
-                                <table class="table table-striped" id="myTable">
+                                <table class="table table-striped" id="recomandedtab" >
                                     <thead>
                                     <tr>
 
@@ -270,11 +269,11 @@
                         <main class="col-sm-9  col-md-10  pt-3">
                             <h3>Event list</h3>
                             <div class="table-responsive">
-                                <input type="text" id="myInput" onkeyup="myFunction()"
+                                <input type="text" id="myFav" onkeyup="myFunctionFav()"
                                        placeholder="Search for locations.."
                                        title="Type in a name">
 
-                                <table class="table table-striped" id="myTable">
+                                <table class="table table-striped" id="myFavId">
                                    <div th:each="event : ${ eventsFromFavoriteCategory }">
 
                                     <thead>
@@ -353,6 +352,8 @@
     Powered by Events Online</p></div>
 
 <script src="../../js/templateforpg.js"></script>
+<script src="../../js/categories.js"></script>
+
 
 
 </html>

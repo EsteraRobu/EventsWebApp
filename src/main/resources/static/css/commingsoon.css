@@ -116,4 +116,64 @@ table tr th {  }
     text-shadow: 1px 1px 1px #fff, 2px 2px 1px #000;
     text-align:center;
 }
+#myFav {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
 
+#myFavId {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+#myFavId th, #myFavId td {
+    text-align: left;
+    padding: 12px;
+}
+
+#myFavId tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#myFavId tr.header, #myFavId tr:hover {
+    background-color: #f1f1f1;
+}
+
+#recomandedin {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#recomandedtab {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+#recomandedtab th, #recomandedtab td {
+    text-align: left;
+    padding: 12px;
+}
+
+#recomandedtab tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#recomandedtab tr.header, #recomandedtab tr:hover {
+    background-color: #f1f1f1;
+}

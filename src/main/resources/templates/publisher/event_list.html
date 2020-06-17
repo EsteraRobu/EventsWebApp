@@ -30,6 +30,8 @@
 <script src="/../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="@{/../static/js/ie10-viewport-bug-workaround.js}"></script>
+<script src="@{/../static/js/categories.js}"></script>
+
 <html lang="en">
 <title>EventsWebApp</title>
 <meta charset="UTF-8">
@@ -178,6 +180,24 @@
     <!-- End page content -->
 </div>
 
+<script>
+    function myFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[5];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+</script>
 <!-- W3.CSS Container -->
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by Events Online</p></div>
 
