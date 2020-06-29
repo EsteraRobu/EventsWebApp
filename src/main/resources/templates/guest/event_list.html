@@ -215,23 +215,31 @@
                                        title="Type in a name">
 
                                 <table class="table table-striped" id="recomandedtab" >
-                                    <thead>
-                                    <tr>
+                                     <div th:each="event : ${ recomandedEvents }">
 
-                                    </tr>
-                                    <tr>
-                                        <th>View</th>
-                                        <th>Event name</th>
-                                        <th>Category</th>
-                                        <th>Start date</th>
-                                        <th>End date</th>
-                                        <th>Location</th>
-                                        <th>Description</th>
-                                        <th>Visualizations</th>
-                                    </tr>
-                                    </thead>
+                                        <thead>
 
-                                    <div th:each="event : ${ recomandedEvents }">
+                                        <tr>
+                                            <th class="heman" align="center" th:text="${event.getKey()}"  ></th>
+                                        </tr>
+                                        <div th:if="${not #lists.isEmpty(event.getValue())}">
+                                            <tr>
+                                                <th>View</th>
+                                                <th>Event name</th>
+                                                <th>Category</th>
+                                                <th>Start date</th>
+                                                <th>End date</th>
+                                                <th>Location</th>
+                                                <th>Description</th>
+                                                <th>Visualizations</th>
+                                            </tr>
+                                        </div>
+                                        <div th:unless="${ not #lists.isEmpty(event.getValue())}">
+                                            <th >No events</th>
+                                        </div>
+
+                                        </thead>
+
                                         <tr th:each="eventDTO : ${ event.getValue()}">
                                             <td>
                                                 <div class="input-group-sm">
@@ -251,8 +259,10 @@
                                             <td th:text="${ eventDTO.visualizationNo }">Visualizations</td>
 
                                         </tr>
+
+                                        </tbody>
                                     </div>
-                                    </tbody>
+
                                 </table>
                             </div>
                         </main>
